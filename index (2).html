@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memento – iedereen kent de bewoners bij de shiftwissel</title>
+<meta name="description" content="Memento maakt voor elke bewoner een levende fiche: het levensverhaal én de aandachtspunten van vandaag, klaar bij elke shiftwissel. Studentenproject KU Leuven in samenwerking met Panenco.">
+<style>
+  :root {
+    --ink: #1f2a2e;
+    --muted: #5b6a70;
+    --accent: #2f6f62;
+    --accent-soft: #e6f0ed;
+    --paper: #fbfaf7;
+    --line: #e3e0d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 28px 0 0; }
+  .logo { font-weight: 700; font-size: 20px; letter-spacing: .02em; color: var(--accent); }
+  .hero { padding: 64px 0 48px; }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 18px; }
+  .sub { font-size: 20px; color: var(--muted); margin: 0 0 28px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+    padding: 13px 22px; border-radius: 8px; font-weight: 600;
+  }
+  .btn:hover { opacity: .9; }
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 24px; margin: 0 0 20px; }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+  .steps li {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px;
+    display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start;
+  }
+  .num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+    font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .form-box { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+  form label { display: block; font-weight: 600; font-size: 15px; margin: 14px 0 6px; }
+  form input[type="text"], form input[type="email"] {
+    width: 100%; padding: 11px 12px; font: inherit; border: 1px solid var(--line); border-radius: 8px; background: var(--paper);
+  }
+  form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  form .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin: 20px 0; }
+  form .check input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  form button { border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+  .hidden-field { display: none; }
+  .form-status { margin: 14px 0 0; font-weight: 600; }
+  .form-status.ok { color: var(--accent); }
+  .form-status.err { color: #a33a2b; }
+  .privacy h3 { font-size: 17px; margin: 22px 0 4px; }
+  .privacy p { margin: 0 0 8px; color: var(--ink); }
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><div class="logo">Memento</div></div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>Iedereen weet bij de start van de shift wie de bewoners zijn.</h1>
+    <p class="sub">Memento maakt voor elke bewoner een levende fiche: het levensverhaal én de aandachtspunten van vandaag, automatisch klaar bij elke shiftwissel.</p>
+    <a class="btn" href="#meedoen">Denk mee of test het prototype</a>
+  </div>
+
+  <section>
+    <h2>Hoe het werkt</h2>
+    <ol class="steps">
+      <li><span class="num">1</span><div><strong>Bij opname</strong> vertelt de familie over de bewoner. De app maakt er een korte fiche van.</div></li>
+      <li><span class="num">2</span><div><strong>Tijdens de shift</strong> spreken zorgmedewerkers kort hun notities in.</div></li>
+      <li><span class="num">3</span><div><strong>Bij de shiftwissel</strong> staat er per bewoner een overdracht klaar, met het belangrijkste bovenaan.</div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Voor wie</h2>
+    <p>Voor woonzorgcentra die willen dat ook interimkrachten en nieuwe collega's de bewoners meteen kennen.</p>
+  </section>
+
+  <section id="meedoen">
+    <h2>Meedenken of als eerste testen?</h2>
+    <p>Werkt u in een woonzorgcentrum en wilt u meedenken of als eerste het prototype testen? Laat uw gegevens achter. Lees eerst onze <a href="#privacy">privacyverklaring</a>.</p>
+    <div class="form-box">
+      <!--
+        Dit formulier werkt via Netlify Forms: zodra de pagina op Netlify staat,
+        verschijnen inzendingen in het Netlify-dashboard (Forms → "interesse").
+        Lokaal geopend (dubbelklik) kan het niet verzenden; dat is normaal.
+      -->
+      <form id="interesse-form" name="interesse" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="interesse">
+        <p class="hidden-field"><label>Niet invullen: <input name="bot-field"></label></p>
+
+        <label for="naam">Naam</label>
+        <input id="naam" name="naam" type="text" autocomplete="name" required>
+
+        <label for="functie">Functie</label>
+        <input id="functie" name="functie" type="text" autocomplete="organization-title" required>
+
+        <label for="wzc">Woonzorgcentrum</label>
+        <input id="wzc" name="woonzorgcentrum" type="text" autocomplete="organization" required>
+
+        <label for="email">E-mailadres</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+
+        <label class="check">
+          <input type="checkbox" name="privacy_akkoord" value="ja" required>
+          <span>Ik heb de <a href="#privacy">privacyverklaring</a> gelezen en ga akkoord.</span>
+        </label>
+
+        <button type="submit" class="btn">Verstuur</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="privacy" class="privacy">
+    <h2>Privacyverklaring</h2>
+
+    <h3>Wie zijn wij?</h3>
+    <p>Memento is een studentenproject van Benjamin Egger, Jaro Meert en Vincent Verwee, studenten handelsingenieur in de beleidsinformatica aan KU Leuven, in samenwerking met Panenco. Contact: <a href="mailto:jaro.meert@student.kuleuven.be">jaro.meert@student.kuleuven.be</a>.</p>
+
+    <h3>Welke gegevens verzamelen we?</h3>
+    <p>Uw naam, functie, woonzorgcentrum en e-mailadres, en wat u ons zelf vertelt.</p>
+
+    <h3>Waarom en op welke grond?</h3>
+    <p>Enkel om u te contacteren voor een gesprek of een test van ons prototype, binnen dit studentenproject. We verwerken uw gegevens op basis van uw toestemming. U kunt die toestemming op elk moment intrekken.</p>
+
+    <h3>Wie ziet uw gegevens?</h3>
+    <p>Alleen ons team, onze promotor aan KU Leuven en Panenco. We delen ze met niemand anders en gebruiken ze niet voor reclame. Het formulier wordt technisch verwerkt door Netlify, de dienst waarop deze pagina draait.</p>
+
+    <h3>Hoe lang bewaren we ze?</h3>
+    <p>Tot het einde van het projectvak, ten laatste in mei 2027. Daarna verwijderen we alles.</p>
+
+    <h3>Uw rechten</h3>
+    <p>U kunt op elk moment vragen om uw gegevens in te zien, te verbeteren of te laten verwijderen. Stuur daarvoor een mail naar <a href="mailto:jaro.meert@student.kuleuven.be">jaro.meert@student.kuleuven.be</a>. Bent u niet tevreden over hoe we met uw gegevens omgaan, dan kunt u klacht indienen bij de <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener">Gegevensbeschermingsautoriteit</a>.</p>
+
+    <h3>Opnames</h3>
+    <p>We nemen gesprekken enkel op als u daar vooraf uitdrukkelijk mee instemt.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Dit is een studentenproject van KU Leuven in samenwerking met Panenco. Er is (nog) geen product te koop.</div>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('interesse-form');
+    var status = document.getElementById('form-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = 'Bezig met verzenden…';
+      var body = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).then(function (res) {
+        if (!res.ok) throw new Error(res.status);
+        form.reset();
+        status.className = 'form-status ok';
+        status.textContent = 'Bedankt! We nemen binnenkort contact met u op.';
+      }).catch(function () {
+        status.className = 'form-status err';
+        status.textContent = 'Verzenden lukte niet. Probeer het later opnieuw of mail ons rechtstreeks.';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
